@@ -21,8 +21,9 @@ let
   -- less or equal, 76 bits
   leq = \m\n. isZero (sub m n);
 
-  -- square root, rounded down, 156 bits
-  iter = \x\r . (leq (sq r) x) (iter x (succ r) r) ;
-  sqrt = \x . iter x 0;
+  -- square root, rounded down, 140 bits
+  sqrt = \sqr. let
+    go = \n. let n1 = succ n in leq (sq n1) sqr (go n1) n
+  in go 0
 
 in sqrt -- 9
