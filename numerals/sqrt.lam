@@ -15,15 +15,20 @@ let
   -- multiplication, 19 bits
   mul = \a\b\f.a(b f);
   -- square, 16 bits
+  T = \x\y.y x;
   sq = \x\f.x(x f);
   -- subtraction, 56 bits
   sub = \m\n. n (\p. \f. \x. p (\g. \h. h (g f)) (\u. x) (\u. u)) m;
-  -- less or equal, 76 bits
-  leq = \m\n. isZero (sub m n);
+  true  = \t\f.t;
+  false = \t\f.f;
+  lt  = \m\n\t\f.  n T (\_.f) (m T (\_.t));
+  leq = \n\m\t\f.  n T (\_.t) (m T (\_.f));
 
-  -- square root, rounded down, 140 bits
+  -- square root, rounded down, 118 bits
   sqrt = \sqr. let
     go = \n. let n1 = succ n in leq (sq n1) sqr (go n1) n
   in go 0
 
-in sqrt -- 9
+in sqrt -- 10
+
+
