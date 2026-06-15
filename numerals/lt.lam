@@ -8,8 +8,8 @@ let
   4 = 2 2;
   false = 0;
   true = \x\y.x;
-  lt = \m\n.  let T = \x\y. y x in n T (\_.false) (m T (\_.true));
--- see div.lam for explanation
-in lt -- 2 2
+  lt = \m\n\t\f.  let T = \x\y. y x in n T (\_.f) (m T (\_.t));
+ lt' = \n\m. lt n m true false -- just for minimal stand alone size -- 57 bits
 
--- size 57 bits
+-- see div.lam for explanation
+in lt' -- 2 2

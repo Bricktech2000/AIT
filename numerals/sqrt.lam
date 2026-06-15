@@ -30,5 +30,3 @@ let
   in go 0
 
 in sqrt -- 10
-
-

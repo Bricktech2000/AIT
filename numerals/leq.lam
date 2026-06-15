@@ -8,8 +8,7 @@ let
   4 = 2 2;
   false = 0;
   true = \x\y.x;
-  leq = \n\m. let T = \x\y.y x in n T (\_.true) (m T (\_.false));
+  leq = \n\m\t\f. let T = \x\y.y x in n T (\_.t) (m T (\_.f));
+  leq' = \n\m. leq n m true false -- just for minimal stand alone size -- 57 bits
 -- see div.lam for explanation
-in leq -- 2 2
-
--- size 57 bits
+in leq'
