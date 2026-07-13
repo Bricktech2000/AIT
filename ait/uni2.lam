@@ -31,6 +31,6 @@ let
   -- binary LC universal machine for closed programs
   uni2 = int2 (\z.z omega);  -- 340 bits
   -- save some bits by assuming closed programs
-  -- uni2 = int2 (\z. z z);
+  -- uni2 = int2 (\z. z z);  -- 324 bits
 
-in omega
+in uni2
