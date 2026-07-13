@@ -12,7 +12,7 @@ let
 
   -- binary LC interpreter
   -- int2 cont bits = cont (\free.parsed) unparsed_bits
-  int2 = \cont\blob.blob (\bit0. bit0
+  int2 = \cont\blob.blob (\bit0. bit0        -- 314 bits
     (\blob1.blob1 (\bit1.
        int2 (\exp.bit1 (cont (\args\arg.exp (\z.z arg args)))
                        (int2 (\exp2.cont (\args.exp args (exp2 args)))))))
@@ -26,11 +26,11 @@ let
  
 
   -- loop
-  omega = omega;
+  omega = omega;             -- 18 bits
 
   -- binary LC universal machine for closed programs
-  -- uni2 = int2 (\z.z omega);
-  -- save some bits
-  uni2 = int2 omega
+  uni2 = int2 (\z.z omega);  -- 340 bits
+  -- save some bits by assuming closed programs
+  -- uni2 = int2 (\z. z z);
 
-in uni2
+in omega
